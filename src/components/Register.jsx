@@ -1,32 +1,47 @@
+// src/components/Register.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { register } from '../services/api';
+import axios from 'axios';
 
 const Register = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
 
-    const handleSubmit = async (e) => {
+    const { name, email, password } = formData;
+
+    const onChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            await register({ name, email, password });
-            navigate('/login');
+            const response = await axios.post('/api/auth/register', formData);
+            console.log(response.data);
         } catch (error) {
-            console.error('Registration error', error);
+            console.error(error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Register</h2>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+        <form onSubmit={onSubmit}>
+            <div>
+                <label>Name:</label>
+                <input type="text" name="name" value={name} onChange={onChange} required />
+            </div>
+            <div>
+                <label>Email:</label>
+                <input type="email" name="email" value={email} onChange={onChange} required />
+            </div>
+            <div>
+                <label>Password:</label>
+                <input type="password" name="password" value={password} onChange={onChange} required />
+            </div>
             <button type="submit">Register</button>
         </form>
     );
-}
+};
 
 export default Register;

@@ -8,7 +8,6 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
         try {
             const response = await login({ email, password });
             localStorage.setItem('token', response.data.token);
