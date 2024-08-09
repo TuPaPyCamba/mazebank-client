@@ -8,12 +8,16 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             const response = await login({ email, password });
+            console.log("Respuesta del servidor:", response); 
             localStorage.setItem('token', response.data.token);
+            console.log("Token guardado:", response.data.token);
             navigate('/dashboard');
         } catch (error) {
             console.error('Login error', error);
+            alert('Error al iniciar sesión. Por favor verifica tus credenciales.');
         }
     };
 

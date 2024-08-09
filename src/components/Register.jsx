@@ -1,4 +1,3 @@
-// src/components/Register.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -17,11 +16,14 @@ const Register = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        console.log("se ejecuto")
         try {
-            const response = await axios.post('/api/auth/register', formData);
+            console.log("enviando")
+            const response = await axios.post('http://localhost:3000/api/auth/register', formData);
             console.log(response.data);
         } catch (error) {
             console.error(error);
+            console.log("no se envio")
         }
     };
 

@@ -7,7 +7,7 @@ import Dashboard from './components/Dashboard';
 import Transfer from './components/Transfer';
 import Report from './components/Report';
 
-function App() {
+export default function App() {
     return (
         <Router>
             <div>
@@ -23,5 +23,3 @@ function App() {
         </Router>
     );
 }
-
-export default App;
