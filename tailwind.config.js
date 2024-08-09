@@ -5,10 +5,15 @@ module.exports = {
     extend: {
       colors: {
         customGray: "#EAECEE",
+        MazeRedColor: "#D3272D",
+        MazeBarColor: "#CFD0D4"
       },
       width: {
         '30': '30%'
       },
+      backgroundImage: {
+        'MazeTheme': "url('./src/assets/#e2e6e5.png')"
+      }
     },
   },
   plugins: [],
