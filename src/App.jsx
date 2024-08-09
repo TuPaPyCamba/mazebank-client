@@ -6,6 +6,7 @@ import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Transfer from './components/Transfer';
 import Report from './components/Report';
+import './global.css'
 
 export default function App() {
     return (
