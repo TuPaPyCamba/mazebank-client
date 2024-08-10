@@ -9,10 +9,8 @@ module.exports = {
         MazeBarColor: "#CFD0D4"
       },
       width: {
-        '30': '30%'
-      },
-      backgroundImage: {
-        'MazeTheme': "url('./src/assets/#e2e6e5.png')"
+        '60': '60%',
+        '80': '80%'
       }
     },
   },

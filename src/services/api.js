@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'http://192.168.100.18:3000/api';
 
 export const login = async (data) => {
     try {
@@ -23,7 +23,7 @@ export const login = async (data) => {
         }
     }
 };
-export const register = (data) => axios.post(`http://localhost:3000/api/auth/register`, data);
+export const register = (data) => axios.post(`${API_URL}/auth/register`, data);
 
 export const getTransactions = () => axios.get(`${API_URL}/transactions`, {
     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
