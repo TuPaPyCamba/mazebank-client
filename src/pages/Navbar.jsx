@@ -10,7 +10,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-MazeBarColor h-[75px] w-full top-0 left-0 z-50">
+        <nav className="bg-MazeBarColor h-[75px] w-full top-0 left-0 z-50 fixed">
             <div className="flex justify-between items-center px-4 mx-auto max-w-[1200px] h-full">
                 {/* Logotipo a la izquierda */}
                 <Link to="/" className="text-white font-bold text-lg flex items-center">

@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Login from './components/Login';
-import Register from './components/Register';
-import Dashboard from './components/Dashboard';
-import Transfer from './components/Transfer';
-import Report from './components/Report';
+import Navbar from './pages/Navbar';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import Transfer from './pages/Transfer';
+import Report from './pages/Report';
 import './styles/global.css'
 import background from './assets/back.png'
-import Footer from './components/Footer';
-import Home from './components/Home';
+import Footer from './pages/Footer';
+import Home from './pages/Home';
 
 function App() {
     return (
