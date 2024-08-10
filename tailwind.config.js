@@ -6,7 +6,8 @@ module.exports = {
       colors: {
         customGray: "#EAECEE",
         MazeRedColor: "#D3272D",
-        MazeBarColor: "#CFD0D4"
+        MazeBarColor: "#CFD0D4",
+        MazeBlack:"#1A1B1F"
       },
       width: {
         '60': '60%',

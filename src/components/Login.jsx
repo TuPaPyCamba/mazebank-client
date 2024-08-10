@@ -37,7 +37,7 @@ const Login = () => {
             </div>
             {/* Formulario para pantallas pequeñas */}
             <div
-                className="block lg:hidden pt-24 pb-36 space-y-16 bg-cover bg-center items-center justify-center"
+                className="block lg:hidden h-screen pt-24 pb-36 space-y-16 bg-cover bg-center items-center justify-center"
                 style={{ backgroundImage: `url(${theme})` }}
             >
                 <div className="bg-MazeBarColor w-80 mx-auto rounded shadow-lg px-5 space-y-5 pt-6 pb-6">
@@ -149,7 +149,6 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-red-600 h-44"></div>
         </div>
     );
 };

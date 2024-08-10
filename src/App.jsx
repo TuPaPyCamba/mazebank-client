@@ -9,16 +9,15 @@ import Report from './components/Report';
 import './styles/global.css'
 import background from './assets/back.png'
 import Footer from './components/Footer';
+import Home from './components/Home';
 
 function App() {
     return (
         <Router>
-                <div 
-                className="bg-cover bg-center h-screen" 
-                style={{ backgroundImage: `url(${background})` }}
-            >
+                <div className="bg-cover bg-center h-screen" style={{ backgroundImage: `url(${background})` }}>
                 <Navbar />
                 <Routes>
+                    <Route path='/' element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/dashboard" element={<Dashboard />} />

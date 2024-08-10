@@ -41,11 +41,7 @@ const Register = () => {
             </div>
             {/* Formulario para pantallas pequeñas */}
             <div className="block lg:hidden">
-                <div
-                className="pt-24 pb-36 h-8 bg-cover bg-center items-center justify-center"
-                style={{ backgroundImage: `url(${tarjetview})` }}
-                >
-                </div>
+                <div className="pt-24 pb-36 h-8 bg-cover bg-center items-center justify-center" style={{ backgroundImage: `url(${tarjetview})` }} />
                 {/* Línea roja */}
                 <div className="bg-MazeRedColor h-1 w-full" />
                 <div className="bg-MazeBarColor w-full mx-auto rounded shadow-lg px-5 space-y-5 pt-6 pb-6">
@@ -92,6 +88,9 @@ const Register = () => {
                         </button>
                     </form>
                 </div>
+                {/* Línea roja */}
+                <div className="bg-MazeRedColor h-1 w-full" />
+                <div className="bg-MazeBlack h-[300px]"></div>
             </div>
         </div>
     );

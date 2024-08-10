@@ -14,23 +14,15 @@ const Footer = () => {
                         <img src={logfooter} alt="Logo" className="h-8 mr-2" />
                         <span className="text-4xl font-bold">MazeBank</span>
                     </div>
-                    <div className="flex justify-between space-x-4">
-                        <Link
-                            to="https://twitter.com/RockstarGames"
-                            className="flex items-center"
-                        >
+                    {/* Línks de redes para escritorio */}
+                    <div className="hidden lg:flex justify-between space-x-4"> {/* Oculto en móviles */}
+                        <Link to="https://twitter.com/RockstarGames" className="flex items-center">
                             <FaSquareXTwitter className="h-6 w-6" />
                         </Link>
-                        <Link
-                            to="https://www.facebook.com/rockstargames"
-                            className="flex items-center"
-                        >
+                        <Link to="https://www.facebook.com/rockstargames" className="flex items-center">
                             <FaFacebookSquare className="h-6 w-6" />
                         </Link>
-                        <Link
-                            to="https://www.instagram.com/rockstargames/"
-                            className="flex items-center"
-                        >
+                        <Link to="https://www.instagram.com/rockstargames/" className="flex items-center">
                             <IoLogoInstagram className="h-6 w-6" />
                         </Link>
                     </div>
@@ -49,6 +41,20 @@ const Footer = () => {
                     </Link>
                     <Link to="" className="text-white hover:text-gray-400 transition duration-200 font-bold">
                         Acerca de MazeBank
+                    </Link>
+                </div>
+                {/* Línea blanca */}
+                <div className="flex lg:hidden bg-MazeBarColor h-1 w-full mt-4 mb-4" />
+                {/* Línks de redes para móviles */}
+                <div className="flex lg:hidden justify-start space-x-2 mt-4">
+                    <Link to="https://twitter.com/RockstarGames" className="flex items-center">
+                        <FaSquareXTwitter className="h-6 w-6" />
+                    </Link>
+                    <Link to="https://www.facebook.com/rockstargames" className="flex items-center">
+                        <FaFacebookSquare className="h-6 w-6" />
+                    </Link>
+                    <Link to="https://www.instagram.com/rockstargames/" className="flex items-center">
+                        <IoLogoInstagram className="h-6 w-6" />
                     </Link>
                 </div>
                 <div>
