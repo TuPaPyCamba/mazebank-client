@@ -29,11 +29,8 @@ const Navbar = () => {
 
                 {/* Enlaces a la derecha */}
                 <div className={`hidden lg:flex space-x-4`}>
-                    <a href="/login" className="text-black hover:text-gray-200">Iniciar Sesión</a>
-                    <a href="/register" className="text-black hover:text-gray-200">Registrarse</a>
-                    <a href="/dashboard" className="text-black hover:text-gray-200">Dashboard</a>
-                    <a href="/transfer" className="text-black hover:text-gray-200">Transferir</a>
-                    <a href="/report" className="text-black hover:text-gray-200">Reportes</a>
+                    <a href="/register" className="text-black py-2 px-4 hover:text-red-600 hover:font-bold">Registrarse</a>
+                    <a href="/login" className="bg-MazeRedColor py-2 px-4 text-white hover:bg-slate-700">Acceder</a>
                 </div>
             </div>
 
@@ -43,11 +40,8 @@ const Navbar = () => {
             {/* Menú desplegable en pantallas pequeñas */}
             {isOpen && (
                 <div className="lg:hidden absolute top-16 right-0 bg-white text-black w-48 shadow-lg rounded-lg">
-                    <a href="/login" className="block px-4 py-2 hover:bg-gray-200">Iniciar Sesión</a>
                     <a href="/register" className="block px-4 py-2 hover:bg-gray-200">Registrarse</a>
-                    <a href="/dashboard" className="block px-4 py-2 hover:bg-gray-200">Dashboard</a>
-                    <a href="/transfer" className="block px-4 py-2 hover:bg-gray-200">Transferir</a>
-                    <a href="/report" className="block px-4 py-2 hover:bg-gray-200">Reportes</a>
+                    <a href="/login" className="block px-4 py-2 hover:bg-gray-200">Acceder</a>
                 </div>
             )}
         </nav>
