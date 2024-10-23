@@ -1,13 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import background from './assets/back.png'
+import React from "react"
+import ReactDOM from "react-dom/client"
+import App from "./App.jsx"
+import { MazeContextProvider } from "./context/Context.jsx"
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
-    <React.StrictMode>
-        <div className="bg-cover bg-center" style={{ backgroundImage: `url('${background}')` }}>
+    <MazeContextProvider>
             <App />
-        </div>
-    </React.StrictMode>
-);
+    </MazeContextProvider>
+)

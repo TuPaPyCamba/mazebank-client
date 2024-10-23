@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { login } from "../services/api";
 
 const AcountLinks = () => {
     return (
@@ -95,10 +94,6 @@ export const FormLog = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await login({ email, password });
-            console.log("Respuesta del servidor:", response);
-            localStorage.setItem("token", response.data.token);
-            console.log("Token guardado:", response.data.token);
             navigate("/dashboard");
         } catch (error) {
             console.error("Login error", error);
@@ -165,7 +160,7 @@ export const FormReg = () => {
         try {
             console.log("enviando");
             const response = await axios.post(
-                "http://192.168.100.18:3000/api/auth/register",
+                "http://localhost:3001/api/auth/register",
                 formData
             );
             console.log(response.data);
