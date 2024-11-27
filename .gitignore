@@ -6,7 +6,8 @@
 .pnp.js
 
 #archivos
-/src/services/api.js
+/src/config.js
+/src/constants/Constants.js
 
 # testing
 /coverage
