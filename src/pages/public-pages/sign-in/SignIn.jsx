@@ -64,7 +64,7 @@ const SignIn = () => {
 
             if (response.data.type === 'error') {
                 setModalMessage(response.data.message)
-                setModalType('error')
+                setModalType(response.data.type)
                 console.error(`STATUS ${response.data.status}: ${response.data.message}`)
                 return
             }

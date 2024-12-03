@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"; // Importa useNavigate para redi
 import config from "../../../../../config";
 import AlertModal from "../../../../../components/AlertModal";
 const SecurrityPassword = () => {
-    const page = 'Change password';
+    const page = 'Change Password';
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -27,7 +27,7 @@ const SecurrityPassword = () => {
             } else if (!newPassword) {
                 setModalMessage('You need to enter your new password.')
             } else if (!confirmPassword) {
-                setModalMessage('You need to confirm ypur new password.')
+                setModalMessage('You need to confirm your new password.')
             }
             setModalType('error')
             return
@@ -35,14 +35,14 @@ const SecurrityPassword = () => {
 
         // Validar que las contraseñas coincidan
         if (newPassword !== confirmPassword) {
-            setModalMessage("Las nuevas contraseñas no coinciden.");
+            setModalMessage('New passwords do not match.');
             setModalType("error");
             return;
         }
 
         // Validar longitud mínima de la nueva contraseña
         if (newPassword.length < 8) {
-            setModalMessage("La nueva contraseña debe tener al menos 8 caracteres.");
+            setModalMessage('Password must be at least 8 characters long.');
             setModalType("error");
             return;
         }
@@ -53,6 +53,13 @@ const SecurrityPassword = () => {
                 withCredentials: true,
             });
 
+            if (response.data.type === 'error') {
+                setModalMessage(response.data.message)
+                setModalType(response.data.type)
+                console.error(`STATUS ${response.data.status}: ${response.data.message}`)
+                return
+            }
+
             setModalMessage("Contraseña actualizada con éxito.");
             setModalType("success");
             setCurrentPassword('');
@@ -60,7 +67,7 @@ const SecurrityPassword = () => {
             setConfirmPassword('');
         } catch (err) {
             console.error(err);
-            setModalMessage(err.response?.data?.message || "Error al actualizar la contraseña.");
+            setModalMessage('Server error when trying to update password, Please try again later or contact our support team.');
             setModalType("error");
         }
     };
@@ -82,7 +89,7 @@ const SecurrityPassword = () => {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                     <div className="flex flex-col">
                         <label className="text-xl caret-transparent">
-                            Contraseña Actual
+                            Current Password
                         </label>
                         <input
                             type="password"
@@ -93,25 +100,25 @@ const SecurrityPassword = () => {
                     </div>
                     <div className="flex flex-col">
                         <label className="text-xl caret-transparent">
-                            Nueva Contraseña
+                            New Password
                         </label>
                         <input
                             type="password"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
-                            placeholder="Al menos 8 caracteres"
+                            placeholder="At least 8 characters"
                             className="p-2 my-2 bg-gray-100 rounded-lg border border-gray-400 text-MazeRedColor font-semibold"
                         />
                     </div>
                     <div className="flex flex-col">
                         <label className="text-xl caret-transparent">
-                            Confirmar Nueva Contraseña
+                            Confirm new Password
                         </label>
                         <input
                             type="password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            placeholder="Al menos 8 caracteres"
+                            placeholder="At least 8 characters"
                             className="p-2 my-2 bg-gray-100 rounded-lg border border-gray-400 text-MazeRedColor font-semibold"
                         />
                     </div>
@@ -119,28 +126,11 @@ const SecurrityPassword = () => {
                         <button
                             type="submit"
                             className="p-4 bg-MazeRedColor text-white font-semibold rounded-lg transition hover:bg-black">
-                            Actualizar contraseña
+                            Update passowrd
                         </button>
                     </div>
                 </form>
             </div>
-
-            {/* Modal */}
-            {modalMessage && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="p-6 rounded-lg shadow-lg w-80w max-w-[400px] bg-white">
-                        <h3 className={`text-lg font-semibold ${modalType === "success" ? "text-green-600" : "text-red-600"}`}>
-                            {modalType === "success" ? "Contraseña Actualizada" : "Error"}
-                        </h3>
-                        <p className="mt-2">{modalMessage}</p>
-                        <button
-                            onClick={closeModal}
-                            className="mt-4 px-4 py-2 bg-MazeRedColor text-white font-semibold rounded-lg hover:bg-black">
-                            Cerrar
-                        </button>
-                    </div>
-                </div>
-            )}
         </>
     );
 };
