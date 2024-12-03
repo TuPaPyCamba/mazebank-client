@@ -1,85 +1,166 @@
-import { useState } from "react"
-import SignUpTheme from "../../../assets/img/tarjetmobile.jpg"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import SignUpTheme from "../../../assets/img/tarjetmobile.jpg";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import config from "../../../config";
+import AlertModal from "../../../components/AlertModal";
 
 const SignUp = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    // Estado para AlertModal
+    const [modalMessage, setModalMessage] = useState(null);
+    const [modalType, setModalType] = useState(null);
+
     const [formData, setFormData] = useState({
-        userName: '',
-        name: '',
-        paternal: '',
-        maternal: '',
-        email: '',
-        phoneNumber: '',
-        birthdate: '',
-        city: '',
-        state: '',
-        country: '',
-        address: '',
-        rfc: '',
-        occupation: '',
-        password: '',
-        passwordConfirm: ''
-    })
+        userName: "",
+        name: "",
+        paternal: "",
+        maternal: "",
+        email: "",
+        phoneNumber: "",
+        birthdate: "",
+        city: "",
+        state: "",
+        country: "",
+        address: "",
+        rfc: "",
+        occupation: "",
+        password: "",
+        passwordConfirm: "",
+    });
 
-    const { userName, name, paternal, maternal, email, phoneNumber, birthdate, city, state, country, address, rfc, occupation, password, passwordConfirm } = formData
+    const {
+        userName,
+        name,
+        paternal,
+        maternal,
+        email,
+        phoneNumber,
+        birthdate,
+        city,
+        state,
+        country,
+        address,
+        rfc,
+        occupation,
+        password,
+        passwordConfirm,
+    } = formData;
 
-    const onSubmit = async (e) => {
-        e.preventDefault()
-    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Lista de campos requeridos
+        const requiredFields = [
+            { name: "userName", label: "UserName" },
+            { name: "name", label: "Name" },
+            { name: "paternal", label: "Paternal Surname" },
+            { name: "maternal", label: "Maternal Surname" },
+            { name: "email", label: "Email" },
+            { name: "phoneNumber", label: "Phone Numer" },
+            { name: "birthdate", label: "Birthdate" },
+            { name: "city", label: "City" },
+            { name: "state", label: "State" },
+            { name: "country", label: "Country" },
+            { name: "address", label: "Address" },
+            { name: "rfc", label: "RFC" },
+            { name: "occupation", label: "Occupation" },
+            { name: "password", label: "Password" },
+            { name: "passwordConfirm", label: "Password Confirm" },
+        ];
+
+        // Verificar campos vacíos
+        const emptyFields = requiredFields.filter((field) =>
+            !formData[field.name]
+        );
+
+        if (emptyFields.length > 0) {
+            const fieldNames = emptyFields.map((field) => field.label).join(
+                ", ",
+            );
+            setModalMessage(
+                `Please fill in the followings fields: ${fieldNames}.`,
+            );
+            setModalType("error");
+            return;
+        }
+
         // Validación de contraseñas
         if (password !== passwordConfirm) {
-            alert('Las contraseñas no coinciden')
-            return
+            setModalMessage("Passwords do not match.");
+            setModalType("error");
+            return;
         }
-    
+
         const formDataWithSurnames = {
             ...formData,
-            surnames: {
-                paternal: formData.paternal,
-                maternal: formData.maternal,
-            },
-            placeOfBirth: {
-                city: formData.city,
-                state: formData.state,
-                country: formData.country,
-            },
-        }
-    
+            surnames: { paternal, maternal },
+            placeOfBirth: { city, state, country },
+        };
+
         try {
             const response = await axios.post(
                 `${config.serverNet}${config.PORT}/api/auth/register`,
-                formDataWithSurnames
-            )
-            console.log(response.data)
-            alert('nueva cuenta creada')
-            navigate('/')
+                formDataWithSurnames,
+            );
+
+            if (response.data.type === "error") {
+                setModalMessage(response.data.message);
+                setModalType("error");
+                console.error(
+                    `STATUS ${response.data.status}: ${response.data.message}`,
+                );
+                return;
+            }
+
+            setModalMessage("¡Account created successfully!.");
+            setModalType("success");
         } catch (error) {
-            console.log('no se ha enviado la información', error)
+            setModalMessage(
+                "Server error when trying to create a new account, Please try again later or contact our support team.",
+            );
+            setModalType("error");
         }
-    }
+    };
 
     const onChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
-    }
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const closeModal = () => {
+        if (modalType === "success") {
+            navigate("/signin");
+        }
+        setModalMessage(null);
+        setModalType(null);
+    };
 
     return (
         <main className="w-full h-full">
+            <AlertModal
+                message={modalMessage}
+                type={modalType}
+                onclose={closeModal}
+            />
             <section
                 className="py-32 bg-cover"
                 style={{ backgroundImage: `url(${SignUpTheme})` }}
             >
                 <div className="bg-MazeGray flex flex-row w-full shadow-2xl mx-auto 700:rounded-2xl 700:max-w-[650px] xl:max-w-[1000px]">
-                    <div className="w-full mx-auto px-5 py-10 flex flex-col 700:px-16 700:py-16 xl:px-24" >
+                    <div className="w-full mx-auto px-5 py-10 flex flex-col 700:px-16 700:py-16 xl:px-24">
                         <header className="font-semibold pb-4 text-center text-3xl 1000:text-4xl">
-                            Crear Cuenta
+                        Create Account
                         </header>
-                        <form onSubmit={onSubmit} className="flex flex-col w-full">
+                        <form
+                            onSubmit={handleSubmit}
+                            className="flex flex-col w-full"
+                        >
                             <div className="flex flex-col">
-                                <label className="my-2 font-semibold w-full">Nombre de Usuario</label>
+                                <label className="my-2 font-semibold w-full n">
+                                    User Name
+                                </label>
                                 <input
                                     className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                     type="text"
@@ -90,7 +171,9 @@ const SignUp = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="my-2 font-semibold w-full">Nombre</label>
+                                <label className="my-2 font-semibold w-full">
+                                    Name
+                                </label>
                                 <input
                                     className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                     type="text"
@@ -102,7 +185,9 @@ const SignUp = () => {
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="flex flex-col">
-                                    <label className="my-2 font-semibold w-full">Apellido Paterno</label>
+                                    <label className="my-2 font-semibold w-full">
+                                        Paternal surname
+                                    </label>
                                     <input
                                         className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                         type="text"
@@ -113,7 +198,9 @@ const SignUp = () => {
                                     />
                                 </div>
                                 <div className="flex flex-col">
-                                    <label className="my-2 font-semibold w-full">Apellido Materno</label>
+                                    <label className="my-2 font-semibold w-full">
+                                        Maternal surname
+                                    </label>
                                     <input
                                         className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                         type="text"
@@ -125,7 +212,9 @@ const SignUp = () => {
                                 </div>
                             </div>
                             <div className="flex flex-col">
-                                <label className="my-2 font-semibold w-full">Email</label>
+                                <label className="my-2 font-semibold w-full">
+                                    Email
+                                </label>
                                 <input
                                     className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                     type="email"
@@ -136,7 +225,9 @@ const SignUp = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="my-2 font-semibold w-full">Numero Telefonico</label>
+                                <label className="my-2 font-semibold w-full">
+                                    Phone Number
+                                </label>
                                 <input
                                     type="tel"
                                     className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
@@ -148,7 +239,9 @@ const SignUp = () => {
                             </div>
                             <div className="grid grid-cols-2 gap-x-4">
                                 <div className="flex flex-col">
-                                    <label className="my-2 font-semibold w-full">Fecha de Nacimiento</label>
+                                    <label className="my-2 font-semibold w-full">
+                                        Birthdate
+                                    </label>
                                     <input
                                         type="date"
                                         className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none w-full"
@@ -158,7 +251,9 @@ const SignUp = () => {
                                     />
                                 </div>
                                 <div className="flex flex-col">
-                                    <label className="my-2 font-semibold w-full">Ciudad</label>
+                                    <label className="my-2 font-semibold w-full">
+                                        City
+                                    </label>
                                     <input
                                         className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                         type="text"
@@ -169,7 +264,9 @@ const SignUp = () => {
                                     />
                                 </div>
                                 <div className="flex flex-col">
-                                    <label className="my-2 font-semibold w-full">Estado</label>
+                                    <label className="my-2 font-semibold w-full">
+                                        State
+                                    </label>
                                     <input
                                         className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                         type="text"
@@ -180,7 +277,9 @@ const SignUp = () => {
                                     />
                                 </div>
                                 <div className="flex flex-col">
-                                    <label className="my-2 font-semibold w-full">Pais</label>
+                                    <label className="my-2 font-semibold w-full">
+                                        Country
+                                    </label>
                                     <input
                                         className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                         type="text"
@@ -192,7 +291,9 @@ const SignUp = () => {
                                 </div>
                             </div>
                             <div className="flex flex-col">
-                                <label className="my-2 font-semibold w-full">Direccion</label>
+                                <label className="my-2 font-semibold w-full">
+                                    Address
+                                </label>
                                 <input
                                     className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                     type="text"
@@ -203,7 +304,9 @@ const SignUp = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="my-2 font-semibold w-full">RFC</label>
+                                <label className="my-2 font-semibold w-full">
+                                    RFC
+                                </label>
                                 <input
                                     className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                     type="text"
@@ -214,7 +317,9 @@ const SignUp = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="my-2 font-semibold w-full">Ocupacion</label>
+                                <label className="my-2 font-semibold w-full">
+                                    Occupation
+                                </label>
                                 <input
                                     className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                     type="text"
@@ -225,7 +330,9 @@ const SignUp = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="my-2 font-semibold w-full">Contraseña</label>
+                                <label className="my-2 font-semibold w-full">
+                                    Password
+                                </label>
                                 <input
                                     className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                     type="password"
@@ -236,7 +343,9 @@ const SignUp = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="my-2 font-semibold w-full">Confirmar Contraseña</label>
+                                <label className="my-2 font-semibold w-full">
+                                    Password Confirm
+                                </label>
                                 <input
                                     className="p-2 rounded-md border-2 border-gray-600 hover:border-MazeRedColor focus:outline-none"
                                     type="password"
@@ -246,13 +355,19 @@ const SignUp = () => {
                                     onChange={onChange}
                                 />
                             </div>
-                            <button type="submit" onClick={onsubmit} className="my-8 p-4 bg-MazeRedColor rounded-md text-white font-bold hover:font-normal">Crear cuenta</button>
+                            <button
+                                type="submit"
+                                onClick={onsubmit}
+                                className="my-8 p-4 bg-MazeRedColor rounded-md text-white font-bold hover:font-normal"
+                            >
+                                Sign Up
+                            </button>
                         </form>
                     </div>
                 </div>
             </section>
         </main>
-    )
-}
+    );
+};
 
-export default SignUp
+export default SignUp;

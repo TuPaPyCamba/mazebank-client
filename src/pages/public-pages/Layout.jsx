@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 import NavBar from "./components/NavBar.jsx"
 import Footer from "./components/Footer.jsx"
-import ScrollToTop from "../private-pages/settings/components/ScrollToTop.jsx"
+import ScrollToTop from "../private-pages/settings-page/components/ScrollToTop.jsx"
 
 const PublicLayout = () => {
     return (

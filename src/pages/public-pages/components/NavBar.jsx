@@ -34,7 +34,7 @@ const NavBar = () => {
                     {/* Enlaces de la derecha */}
                     <div className="hidden 700:flex gap-8">
                         <Link to="/signup" className={getLinkClasses("/signup")}>
-                            Registrarse
+                            Register
                             <div className={`h-1 mx-auto transition-all mt-1 ${
                                     pathname === "/signup"
                                         ? "bg-MazeRedColor w-10 rounded-full"
@@ -42,7 +42,7 @@ const NavBar = () => {
                                 }`} />
                         </Link>
                         <Link to="/signin" className={getLinkClasses("/signin")}>
-                            Acceder
+                            Access
                             <div className={`h-1 mx-auto transition-all mt-1 ${
                                     pathname === "/signin"
                                         ? "bg-MazeRedColor w-10 rounded-full"

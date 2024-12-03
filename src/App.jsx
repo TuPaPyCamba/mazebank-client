@@ -15,23 +15,23 @@ import SignUp from './pages/public-pages/sign-up/SignUp.jsx'
 import Warning from './pages/public-pages/warning/Warning.jsx'
 
 // Elementos Privados
-import HomeP from './pages/private-pages/Home.jsx'
-import Cards from './pages/private-pages/Cards.jsx'
-import History from './pages/private-pages/History.jsx'
-import TransferFunds from './pages/private-pages/TransferFunds.jsx'
+import HomeP from './pages/private-pages/home-page/Home.jsx'
+import Cards from './pages/private-pages/my-cards/Cards.jsx'
+import History from './pages/private-pages/transaction-history/History.jsx'
+import TransferFunds from './pages/private-pages/transfer-funds/TransferFunds.jsx'
 
 // Elementos de Settings
-import Settings from './pages/private-pages/settings/Settings.jsx'
-import SettingsAccount from './pages/private-pages/settings/settings-account/SettingsAccount.jsx'
-import SettingsSecurity from './pages/private-pages/settings/settings-security/SettingsSecurity.jsx'
-import SettingsNotifications from './pages/private-pages/settings/settings-notifications/SettingsNotifications.jsx'
-import SettingsAccessibility from './pages/private-pages/settings/settings-accessibility/SettingsAccessibility.jsx'
+import Settings from './pages/private-pages/settings-page/Settings.jsx'
+import SettingsAccount from './pages/private-pages/settings-page/settings-account/SettingsAccount.jsx'
+import SettingsSecurity from './pages/private-pages/settings-page/settings-security/SettingsSecurity.jsx'
+import SettingsNotifications from './pages/private-pages/settings-page/settings-notifications/SettingsNotifications.jsx'
+import SettingsAccessibility from './pages/private-pages/settings-page/settings-accessibility/SettingsAccessibility.jsx'
 
 // Elementos de Settings-Account
-import AccountUpdate from './pages/private-pages/settings/settings-account/account-update/AccountUpdate.jsx'
+import AccountUpdate from './pages/private-pages/settings-page/settings-account/account-update/AccountUpdate.jsx'
 
 // Elementos de Settings-Security
-import SecurrityPassword from './pages/private-pages/settings/settings-security/security-password/SecurrityPassword.jsx'
+import SecurrityPassword from './pages/private-pages/settings-page/settings-security/security-password/SecurrityPassword.jsx'
 
 // Elementos de Settings-Notifications
 

@@ -27,6 +27,8 @@ const FormContainer = () => {
             { withCredentials: true } // permite enviar y recibir cookies
         )
 
+        const message = response.data.message
+
         console.log(response.data)
 
         // Si el login fue exitoso, redirige al dashboard
@@ -99,6 +101,7 @@ const FormContainer = () => {
                     style={{ backgroundImage: `url(${Money})` }}
                 ></div>
             </div>
+            
         </section>
     )
 }

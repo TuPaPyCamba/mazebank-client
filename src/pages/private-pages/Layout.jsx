@@ -7,7 +7,7 @@ import Constants from '../../constants/Constants.js';
 
 import MazeBankLogo from '../../assets/img/Logo.png'
 import MobileNav from './components/MobileNav.jsx';
-import ScrollToTop from './settings/components/ScrollToTop.jsx';
+import ScrollToTop from './settings-page/components/ScrollToTop.jsx';
 
 const PrivateLayout = () => {
     const [userBasicData, setUserBasicData] = useState(null);

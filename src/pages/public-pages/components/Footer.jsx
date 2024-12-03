@@ -20,11 +20,11 @@ const Footer = () => {
                 <div className="w-full flex flex-col 850:flex-row 850:justify-between gap-6">
                     {/* Links */}
                     <div className="flex flex-col items-center font-semibold text-lg gap-3 850:flex-row 850:gap-6">
-                        <Link to="/warning" className="footer-link">Centro de Ayuda</Link>
-                        <Link to="/warning" className="footer-link">Acerca Maze Bank</Link>
-                        <Link to="/warning" className="footer-link">Contacto</Link>
+                        <Link to="/warning" className="footer-link">help Center</Link>
+                        <Link to="/warning" className="footer-link">About MazeBank</Link>
+                        <Link to="/warning" className="footer-link">Contact</Link>
                         <Link to="/warning" className="footer-link">Legal</Link>
-                        <Link to="/warning" className="footer-link">Avisos de Privacidad</Link>
+                        <Link to="/warning" className="footer-link">privacy Notice</Link>
                     </div>
                     {/* Media Links */}
                     <div className="flex flex-row justify-center my-auto gap-x-2">
@@ -41,7 +41,7 @@ const Footer = () => {
                 </div>
                 <div className="my-10">
                     <p className="text-sm">
-                        © 2024 MazeBank. Todos los derechos reservados.
+                        © 2024 MazeBank. All rights reserved.
                     </p>
                 </div>
             </div>

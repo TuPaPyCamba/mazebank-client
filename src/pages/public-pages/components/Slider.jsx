@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import RightArrow from "../../assets/icons/nav-arrow-right.svg";
-import LeftArrow from "../../assets/icons/nav-arrow-left.svg";
+import RightArrow from "../../../assets/icons/nav-arrow-right.svg";
+import LeftArrow from "../../../assets/icons/nav-arrow-left.svg";
 
 // Slider esta hecho para abarcar todo el espacio que su contenedor le permita por eso es importante usarlo dentro de un contenedor
 

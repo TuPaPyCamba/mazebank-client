@@ -1,4 +1,4 @@
-import Slider from '../../../components/UI/Slider.jsx'
+import Slider from '../components/Slider.jsx'
 import '../../../styles/global.css'
 
 import Location from '../../../assets/icons/location.svg'
