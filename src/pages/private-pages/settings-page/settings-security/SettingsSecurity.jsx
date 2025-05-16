@@ -8,7 +8,7 @@ const SettingsSecurity = () => {
         {
             label : "Cambia tu contraseña",
             descripcion : "Cambia tu contraseña en cualquier momento.",
-            route : "/dashboard/setting/security/changepassword"
+            route : "/dashboard/settings/security/changepassword"
         },
         {
             label : "Seguridad",

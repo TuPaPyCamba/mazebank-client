@@ -8,13 +8,13 @@ const NavBar = () => {
 
     const location = useLocation();
     const { pathname } = location;
-    const [isOpen, setIsOpen] = useState(false)
+    // const [isOpen, setIsOpen] = useState(false)
     const links = Constants.PublickLinks
 
     // alterna el estado de {isOpen} para ocultar o no los links del menu hambuerguesa
-    const toggleMenu = () => {
-        setIsOpen(!isOpen)
-    }
+    // const toggleMenu = () => {
+    //     setIsOpen(!isOpen)
+    // }
 
     // Función para obtener clases condicionales
     const getLinkClasses = (path) =>
@@ -26,11 +26,11 @@ const NavBar = () => {
                 <Link to="/">
                     <img src={NavLogo} alt="MazeBank Logotipo" className="h-8 360:h-12" />
                 </Link>
-                <div>
+                <div className="flex items-center">
                     {/* Menu Hamburguesa */}
-                    <button onClick={toggleMenu} className="700:hidden">
+                    {/* <button onClick={toggleMenu} className="700:hidden"> */}
                         <MobileNav links={links}/>
-                    </button>
+                    {/* </button> */}
                     {/* Enlaces de la derecha */}
                     <div className="hidden 700:flex gap-8">
                         <Link to="/signup" className={getLinkClasses("/signup")}>

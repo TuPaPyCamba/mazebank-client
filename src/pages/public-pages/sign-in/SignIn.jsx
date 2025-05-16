@@ -67,7 +67,7 @@ const SignIn = () => {
                 setModalType(response.data.type)
                 console.error(`STATUS ${response.data.status}: ${response.data.message}`)
                 return
-            }
+            // }
             
             navigate('/dashboard/home')
         } catch (error) {

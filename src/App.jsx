@@ -80,7 +80,7 @@ function App() {
                     {/* <Route path='/dashboard/settings/account/' element={<Account />} /> */}
                     
                     {/* Rutas de Settings-Security */}
-                    <Route path='/dashboard/setting/security/changepassword' element={<SecurrityPassword />} />
+                    <Route path='/dashboard/settings/security/changepassword' element={<SecurrityPassword />} />
 
                     {/* Rutas de Settings-Notifications */}
 

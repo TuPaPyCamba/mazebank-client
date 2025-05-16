@@ -20,7 +20,7 @@ const MobileNav = ({ user = null, links }) => {
     <>
       {/* Botón del menú */}
       <button onClick={toggleMenu}>
-        <IoMenu className="flex text-MazeRedColor min-h-14 w-12 h-12" />
+        <IoMenu className="flex text-MazeRedColor min-h-14 w-12 h-12 700:hidden" />
       </button>
 
       {/* Fondo oscuro y contenedor del menú con animación */}
